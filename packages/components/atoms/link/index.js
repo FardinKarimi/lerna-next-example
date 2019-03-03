@@ -1,6 +1,8 @@
+import React from 'react'
 import styled from 'styled-components'
+import NextLink from 'next/link'
 
-export default styled.a`
+const A = styled.a`
   font-size: 1em;
   text-decoration: none;
   cursor: pointer;
@@ -20,3 +22,28 @@ export default styled.a`
     text-decoration: underline;
   }
 `
+
+const Link = ({
+  prefetch = false,
+  href,
+  target,
+  children,
+  onClick,
+  ...props
+}) => {
+  const handleClick = onClick
+    ? event => {
+        event.stopPropagation()
+        onClick && onClick(event)
+      }
+    : undefined
+  return (
+    <NextLink href={href} prefetch={prefetch}>
+      <A onClick={handleClick} target={target} href={href} {...props}>
+        {children}
+      </A>
+    </NextLink>
+  )
+}
+
+export default Link
