@@ -1,0 +1,26 @@
+{
+  "name": "@company/customer",
+  "version": "0.0.0",
+  "description": "UWA for web customers",
+  "main": "./server/index.js",
+  "scripts": {
+    "dev": "nodemon --watch server ./server/index.js",
+    "build": "next build",
+    "serve": "NODE_ENV=production node ./server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fardin Karimi",
+  "license": "ISC",
+  "dependencies": {
+    "@company/components": "0.0.0",
+    "@company/shared": "0.0.0",
+    "fastify": "^2.0.0",
+    "next": "^8.0.3",
+    "nodemon": "^1.18.10",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "next-plugin-transpile-modules": "1.0.0"
+  }
+}

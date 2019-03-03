@@ -1,0 +1,46 @@
+{
+  "parser": "babel-eslint",
+
+  "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "standard",
+    "standard-jsx",
+    "prettier",
+    "prettier/react",
+    "prettier/standard"
+  ],
+  "plugins": ["prettier", "import", "react-hooks"],
+  "settings": {},
+  "globals": {
+    "UPSCOPE_KEY": true,
+    "INTERCOM_KEY": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "camelcase": [2, { "properties": "never" }]
+  },
+  "overrides": [
+    {
+      "files": ["*"],
+      "excludedFiles": ["server/*"],
+      "env": { "browser": true }
+    },
+    {
+      "files": ["server/*"],
+      "env": { "node": true }
+    },
+    {
+      "files": ["test.js", "*.test.js", "test-setup.js"],
+      "env": { "jest": true },
+      "globals": {
+        "fetch": true,
+        "it": true,
+        "describe": true,
+        "test": true,
+        "expect": true,
+        "jest": true
+      }
+    }
+  ]
+}

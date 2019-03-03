@@ -1,0 +1,14 @@
+const PORT =
+  parseInt(process.env.CARRIER_PORT, 10) ||
+  parseInt(process.env.PORT, 10) ||
+  3000
+
+const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production'
+
+const BIND_ADDRESS = '0.0.0.0'
+
+module.exports = {
+  PORT,
+  IS_DEVELOPMENT,
+  BIND_ADDRESS
+}
