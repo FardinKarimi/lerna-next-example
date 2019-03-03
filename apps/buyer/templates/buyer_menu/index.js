@@ -1,16 +1,10 @@
 import Menu from '@company/components/organisms/menu'
 import withText from '@company/components/_hocs/with_text'
+import withUser from '@company/components/_hocs/with_user'
 
-const BuyerMenu = ({ texts }) => (
+const BuyerMenu = ({ user, texts }) => (
   <Menu
-    profile={{
-      userName: 'fardin@mobilabsolutions.com',
-      companyName: 'MobiLab Solutions GmbH.',
-      userType: 'Online Buyer',
-      firstName: 'Fardin',
-      lastName: 'Karimi',
-      imageUrl: 'https://avatars0.githubusercontent.com/u/15778261?s=460&v=4'
-    }}
+    profile={user}
     links={[
       { href: '/cart', text: texts.cart },
       { href: '/history', text: texts.shoppingHistory },
@@ -21,4 +15,4 @@ const BuyerMenu = ({ texts }) => (
   />
 )
 
-export default withText(BuyerMenu)
+export default withUser(withText(BuyerMenu))
