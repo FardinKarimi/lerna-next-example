@@ -1,0 +1,27 @@
+{
+  "name": "@company/buyer",
+  "description": "Web Application for Buyers",
+  "version": "0.2.0",
+  "main": "./server/index.js",
+  "scripts": {
+    "dev": "nodemon --watch server ./server/index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node ./server/index.js",
+    "test": "npm run eslint && npm run jest",
+    "eslint": "eslint ."
+  },
+  "dependencies": {
+    "@company/components": "^0.2.0",
+    "@company/shared": "^0.2.0",
+    "fastify": "2.0.0",
+    "next": "8.0.3",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "styled-components": "4.1.2"
+  },
+  "devDependencies": {
+    "eslint": "5.15.0",
+    "next-plugin-transpile-modules": "2.0.0",
+    "nodemon": "1.18.10"
+  }
+}

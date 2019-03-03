@@ -1,5 +1,12 @@
 {
   "version": "independent",
-  "independent": true,
-  "packages": ["apps/*", "packages/*"]
+  "packages": ["apps/*", "packages/*"],
+  "command": {
+    "publish": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "message": "chore(release): publish."
+    }
+  },
+  "independent": true
 }
