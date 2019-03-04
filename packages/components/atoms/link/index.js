@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import NextLink from 'next/link'
+import { isServer } from '@company/shared'
 
 const A = styled.a`
   font-size: 1em;
   text-decoration: none;
+  font-weight: ${props => (props.isCurrentPage ? 'bold' : 'normal')};
   cursor: pointer;
   :link {
     color: ${props => props.theme.primary._700};
@@ -37,9 +39,16 @@ const Link = ({
         onClick && onClick(event)
       }
     : undefined
+  const isCurrentPage = !isServer && window.location.pathname === href
   return (
     <NextLink href={href} prefetch={prefetch}>
-      <A onClick={handleClick} target={target} href={href} {...props}>
+      <A
+        isCurrentPage={isCurrentPage}
+        onClick={handleClick}
+        target={target}
+        href={href}
+        {...props}
+      >
         {children}
       </A>
     </NextLink>
