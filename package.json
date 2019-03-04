@@ -13,8 +13,7 @@
     "seller": "npx lerna run dev --scope=@company/seller --stream",
     "clean": "npx lerna clean",
     "eslint": "npx lerna run eslint --stream --parallel",
-    "start": "npx lerna run start --parallel",
-    "serve": "npx lerna run start --stream --parallel",
+    "serve": "npx lerna run start --parallel",
     "version": "npx lerna version"
   }
 }
