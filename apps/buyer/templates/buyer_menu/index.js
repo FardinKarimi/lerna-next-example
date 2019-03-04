@@ -6,6 +6,7 @@ const BuyerMenu = ({ user, texts }) => (
   <Menu
     profile={user}
     links={[
+      { href: '/', text: texts.home },
       { href: '/cart', text: texts.cart },
       { href: '/history', text: texts.shoppingHistory },
       { href: '/preferences', text: texts.preferences },
