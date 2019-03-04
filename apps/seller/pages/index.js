@@ -1,8 +1,6 @@
-import React from 'react'
+import NotImplemented from '@company/components/molecules/not_implemented'
+import withSideMenu from '@company/components/_hocs/with_side_menu'
+
 import SellerMenu from '../templates/seller_menu'
 
-export default class extends React.Component {
-  render() {
-    return <SellerMenu />
-  }
-}
+export default withSideMenu(SellerMenu)(NotImplemented)

@@ -1,3 +1,6 @@
-import NotImplemented from '@company/components/_generic_pages/not_implemented'
+import NotImplemented from '@company/components/molecules/not_implemented'
+import withSideMenu from '@company/components/_hocs/with_side_menu'
 
-export default NotImplemented
+import BuyerMenu from '../../templates/buyer_menu'
+
+export default withSideMenu(BuyerMenu)(NotImplemented)
