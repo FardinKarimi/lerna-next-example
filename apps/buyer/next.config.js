@@ -1,4 +1,4 @@
-const withTM = require('next-plugin-transpile-modules')
+const withTM = require('next-transpile-modules')
 
 module.exports = withTM({
   transpileModules: ['@company/components', '@company/shared']

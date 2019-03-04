@@ -20,8 +20,9 @@
     "styled-components": "4.1.2"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "1.10.0",
     "eslint": "5.15.0",
-    "next-plugin-transpile-modules": "2.0.0",
+    "next-transpile-modules": "2.0.0",
     "nodemon": "1.18.10"
   }
 }
