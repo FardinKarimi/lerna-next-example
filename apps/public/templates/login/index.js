@@ -1,13 +1,16 @@
 import Menu from '@company/components/organisms/menu'
-import withText from '@company/components/_hocs/with_text'
+import useText from '@company/components/_contexts/text_provider'
 
-const SellerMenu = ({ texts }) => (
-  <Menu
-    links={[
-      { href: 'http://localhost:3010', text: texts.loginAsSeller },
-      { href: 'http://localhost:3020', text: texts.loginAsBuyer }
-    ]}
-  />
-)
+const SellerMenu = () => {
+  const texts = useText()
+  return (
+    <Menu
+      links={[
+        { href: 'http://localhost:3010', text: texts.loginAsSeller },
+        { href: 'http://localhost:3020', text: texts.loginAsBuyer }
+      ]}
+    />
+  )
+}
 
-export default withText(SellerMenu)
+export default SellerMenu

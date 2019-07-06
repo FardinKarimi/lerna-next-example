@@ -7,5 +7,8 @@ export default {
   shoppingHistory: 'Shopping History',
   oops: 'Ooops!',
   notImplemented: 'This page is not implemented yet :/',
-  preferences: 'Preferences'
+  preferences: 'Preferences',
+  grocery: 'Grocery',
+  kitchen: 'Kitchen Tools',
+  car: 'Car Tools'
 }
