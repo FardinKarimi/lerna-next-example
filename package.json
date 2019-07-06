@@ -1,19 +1,20 @@
 {
   "name": "root",
   "devDependencies": {
-    "@babel/core": "7.3.4",
-    "@babel/preset-env": "7.3.4"
+    "@babel/core": "7.5.0",
+    "@babel/preset-env": "7.5.0",
+    "lerna": "3.15.0"
   },
   "scripts": {
-    "bootstrap": "npx lerna bootstrap --hoist",
-    "build": "npx lerna run build --stream",
-    "dev": "npx lerna run dev --parallel --stream",
-    "public": "npx lerna run dev --scope=@company/public --stream",
-    "buyer": "npx lerna run dev --scope=@company/buyer --stream",
-    "seller": "npx lerna run dev --scope=@company/seller --stream",
-    "clean": "npx lerna clean",
-    "eslint": "npx lerna run eslint --stream --parallel",
-    "serve": "npx lerna run start --parallel",
-    "version": "npx lerna version"
+    "bootstrap": "lerna bootstrap --hoist",
+    "build": "lerna run build --stream",
+    "dev": "lerna run dev --parallel --stream",
+    "public": "lerna run dev --scope=@company/public --stream",
+    "buyer": "lerna run dev --scope=@company/buyer --stream",
+    "seller": "lerna run dev --scope=@company/seller --stream",
+    "clean": "lerna clean",
+    "eslint": "lerna run eslint --stream --parallel",
+    "serve": "lerna run start --parallel",
+    "version": "lerna version"
   }
 }
