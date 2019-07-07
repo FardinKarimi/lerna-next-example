@@ -1,6 +1,10 @@
 import NotImplemented from '@company/components/molecules/not_implemented'
-import withSideMenu from '@company/components/_hocs/with_side_menu'
+import ComponentWithMenu from '@company/components/organisms/component_with_menu'
 
-import SellerMenu from '../templates/seller_menu'
+import SellerMenu from '../../templates/seller_menu'
 
-export default withSideMenu(SellerMenu)(NotImplemented)
+const MainPage = () => (
+  <ComponentWithMenu renderMenu={SellerMenu} renderContent={NotImplemented} />
+)
+
+export default MainPage

@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   box-shadow: ${props => props.theme.elevation} ${props => props.theme.shade};
   background: ${props => props.theme.shade._100};
   margin-left: 0.5em;
+  flex: 0;
 `
 
 const Header = styled.div`

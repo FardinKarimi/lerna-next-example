@@ -1,29 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const Article = styled.div`
-  padding: 1em;
-  color: ${props => props.theme.shade._700};
-  :hover {
-    color: ${props => props.theme.shade._900};
-  }
-`
+import Article from '../../molecules/article'
 
-const Wrapper = styled.div`
-  border: 1px solid ${props => props.theme.shade._300};
-`
+const Wrapper = styled.div``
 
 const ArticleList = ({ articles }) => {
+  const [expandedArticles, toggleArticle] = useState({})
   return (
     <Wrapper>
-      {articles.map((article, key) => (
-        <Article key={key}>{article}</Article>
-      ))}
+      {articles.map(({ id, ...article }) => {
+        const expanded = !!expandedArticles[id]
+        return (
+          <Article
+            key={id}
+            {...article}
+            expanded={expanded}
+            onClick={() =>
+              toggleArticle({
+                ...expandedArticles,
+                [id]: !expanded
+              })
+            } 
+          />
+        )
+      })}
     </Wrapper>
   )
 }
-
-ArticleList.Wrapper = Wrapper
-ArticleList.Article = Article
 
 export default ArticleList
