@@ -9,11 +9,21 @@ const Article = styled.div`
   }
 `
 
-const ArticleList = styled.div`
+const Wrapper = styled.div`
   border: 1px solid ${props => props.theme.shade._300};
-  margin: 0.5em;
 `
 
+const ArticleList = ({ articles }) => {
+  return (
+    <Wrapper>
+      {articles.map((article, key) => (
+        <Article key={key}>{article}</Article>
+      ))}
+    </Wrapper>
+  )
+}
+
+ArticleList.Wrapper = Wrapper
 ArticleList.Article = Article
 
 export default ArticleList

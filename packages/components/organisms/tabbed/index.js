@@ -18,6 +18,10 @@ const Header = styled.div`
   justify-content: center;
 `
 
+const ContentWrapper = styled.div`
+  margin: 0.5em;
+`
+
 const Tabbed = ({ profile, tabs, defaultTabId }) => {
   const [activeTabId, setActiveTab] = useState(defaultTabId)
 
@@ -38,7 +42,7 @@ const Tabbed = ({ profile, tabs, defaultTabId }) => {
             />
           ))}
       </Header>
-      {content}
+      <ContentWrapper>{content}</ContentWrapper>
     </Wrapper>
   )
 }
