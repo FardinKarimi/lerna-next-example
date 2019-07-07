@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Tab from '../../molecules/tab'
@@ -23,9 +23,7 @@ const ContentWrapper = styled.div`
   margin: 0.5em;
 `
 
-const Tabbed = ({ profile, tabs, defaultTabId }) => {
-  const [activeTabId, setActiveTab] = useState(defaultTabId)
-
+const Tabbed = ({ profile, tabs, activeTabId, setActiveTab }) => {
   const activeTab = tabs.filter(tab => tab.id === activeTabId)[0]
   const content =
     activeTab && activeTab.renderContent && activeTab.renderContent()

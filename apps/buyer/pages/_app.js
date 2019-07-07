@@ -6,10 +6,13 @@ import 'isomorphic-fetch'
 
 import { TextProvider } from '@company/components/_contexts/text_provider'
 import { UserProvider } from '@company/components/_contexts/user_provider'
+import { StateProvider } from '@company/components/_contexts/state_provider'
 
 import theme from '../resources/theme'
 import texts from '../resources/texts'
 import BaseStyles from '../resources/base_styles'
+
+import { initialState, reducer } from '../state'
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -33,7 +36,9 @@ export default class extends App {
         <TextProvider value={texts}>
           <UserProvider value={user}>
             <ThemeProvider theme={theme}>
-              <Component {...pageProps} />
+              <StateProvider initialState={initialState} reducer={reducer}>
+                <Component {...pageProps} />
+              </StateProvider>
             </ThemeProvider>
           </UserProvider>
         </TextProvider>

@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Article from '../../molecules/article'
 
 const Wrapper = styled.div``
 
-const ArticleList = ({ articles }) => {
-  const [expandedArticles, toggleArticle] = useState({})
+const ArticleList = ({ articles, expandedArticles, toggleArticle }) => {
   return (
     <Wrapper>
       {articles.map(({ id, ...article }) => {
@@ -16,12 +15,7 @@ const ArticleList = ({ articles }) => {
             key={id}
             {...article}
             expanded={expanded}
-            onClick={() =>
-              toggleArticle({
-                ...expandedArticles,
-                [id]: !expanded
-              })
-            } 
+            onClick={() => toggleArticle(id)}
           />
         )
       })}

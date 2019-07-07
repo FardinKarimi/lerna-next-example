@@ -1,12 +1,36 @@
 import Tabbed from '@company/components/organisms/tabbed'
 import ArticleList from '@company/components/organisms/article_list'
 import useText from '@company/components/_contexts/text_provider'
+import useStateValue from '@company/components/_contexts/state_provider'
+import { actions } from '../../state'
 
-const renderTab = articles => () =>
-  articles && articles.length > 0 && <ArticleList articles={articles} />
+const renderTab = articles => () => {
+  const [
+    {
+      shop: { expandedArticles }
+    },
+    dispatch
+  ] = useStateValue()
+  return (
+    articles &&
+    articles.length > 0 && (
+      <ArticleList
+        articles={articles}
+        expandedArticles={expandedArticles}
+        toggleArticle={id => dispatch(actions.toggleArticle(id))}
+      />
+    )
+  )
+}
 
 const Shop = ({ articles }) => {
   const texts = useText()
+  const [
+    {
+      shop: { activeTabId }
+    },
+    dispatch
+  ] = useStateValue()
   return (
     <Tabbed
       tabs={[
@@ -26,7 +50,8 @@ const Shop = ({ articles }) => {
           renderContent: renderTab(articles.carTools)
         }
       ]}
-      defaultTabId="b"
+      activeTabId={activeTabId}
+      setActiveTab={id => dispatch(actions.switchTab(id))}
     />
   )
 }
