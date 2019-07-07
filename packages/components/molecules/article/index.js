@@ -33,4 +33,4 @@ const Article = ({ id, text, description, expanded, onClick }) => {
   )
 }
 
-export default Article
+export default React.memo(Article, (p, n) => p.expanded === n.expanded)
