@@ -16,12 +16,11 @@ import { initialState, reducer } from '../state'
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
-    const baseUrl = ctx.req ? `http://${ctx.req.hostname}` : ''
-    const userResponse = await fetch(`${baseUrl}/api/v1/me`)
+    const userResponse = await fetch(`http://localhost:3020/api/v1/me`)
     const user = await userResponse.json()
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
-      : await Promise.resolve(null) // just `null` is not working.
+      : await Promise.resolve(null)
     return { pageProps, user }
   }
 

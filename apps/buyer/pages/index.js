@@ -10,9 +10,8 @@ const MainPage = ({ articles }) => {
   return <ComponentWithMenu renderMenu={BuyerMenu} renderContent={renderShop} />
 }
 
-MainPage.getInitialProps = async ctx => {
-  const baseUrl = ctx.req ? `http://${ctx.req.hostname}` : ''
-  const articlesResponse = await fetch(`${baseUrl}/api/v1/articles`)
+MainPage.getInitialProps = async () => {
+  const articlesResponse = await fetch(`http://localhost:3020/api/v1/articles`)
   const articles = await articlesResponse.json()
   return { articles }
 }

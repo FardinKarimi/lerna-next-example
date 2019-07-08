@@ -2,9 +2,8 @@
   "name": "@company/seller",
   "description": "Web Application for Sellers",
   "version": "0.2.0",
-  "main": "./server/index.js",
   "scripts": {
-    "dev": "nodemon --watch server ./server/index.js",
+    "dev": "next -p 3010",
     "build": "next build",
     "start": "NODE_ENV=production node ./server/index.js",
     "test": "npm run eslint && npm run jest",

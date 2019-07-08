@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   userName: 'fardin@mobilabsolutions.com',
   companyName: 'MobiLab Solutions GmbH.',
   userType: 'Online Buyer',

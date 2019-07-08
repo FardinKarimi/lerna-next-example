@@ -2,9 +2,8 @@
   "name": "@company/public",
   "description": "Web Application for Public Pages",
   "version": "0.2.0",
-  "main": "./server/index.js",
   "scripts": {
-    "dev": "nodemon --watch server ./server/index.js",
+    "dev": "next -p 3000",
     "build": "next build",
     "start": "NODE_ENV=production node ./server/index.js",
     "test": "npm run eslint && npm run jest",

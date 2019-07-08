@@ -13,8 +13,7 @@ import BaseStyles from '../resources/base_styles'
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
-    const baseUrl = ctx.req ? `http://${ctx.req.hostname}` : ''
-    const userResponse = await fetch(`${baseUrl}/api/v1/me`)
+    const userResponse = await fetch(`http://localhost:3010/api/v1/me`)
     const user = await userResponse.json()
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
