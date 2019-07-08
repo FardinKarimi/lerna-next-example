@@ -2,7 +2,7 @@ import Tabbed from '@company/components/organisms/tabbed'
 import ArticleList from '@company/components/organisms/article_list'
 import useText from '@company/components/_contexts/text_provider'
 import useStateValue from '@company/components/_contexts/state_provider'
-import { actions } from '../../state'
+import { shopActions } from '../../state/shop'
 
 const renderTab = articles => () => {
   const [
@@ -17,7 +17,7 @@ const renderTab = articles => () => {
       <ArticleList
         articles={articles}
         expandedArticles={expandedArticles}
-        toggleArticle={id => dispatch(actions.toggleArticle(id))}
+        toggleArticle={id => dispatch(shopActions.toggleArticle(id))}
       />
     )
   )
@@ -51,7 +51,7 @@ const Shop = ({ articles }) => {
         }
       ]}
       activeTabId={activeTabId}
-      setActiveTab={id => dispatch(actions.switchTab(id))}
+      setActiveTab={id => dispatch(shopActions.switchTab(id))}
     />
   )
 }
