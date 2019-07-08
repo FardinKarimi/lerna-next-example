@@ -1,7 +1,9 @@
 import Tabbed from '@company/components/organisms/tabbed'
 import ArticleList from '@company/components/organisms/article_list'
+
 import useText from '@company/components/_contexts/text_provider'
-import useStateValue from '@company/components/_contexts/state_provider'
+import useStore from '@company/components/_contexts/state_provider'
+
 import { shopActions } from '../../state/shop'
 
 const renderTab = articles => () => {
@@ -10,7 +12,7 @@ const renderTab = articles => () => {
       shop: { expandedArticles }
     },
     dispatch
-  ] = useStateValue()
+  ] = useStore()
   return (
     articles &&
     articles.length > 0 && (
@@ -30,7 +32,7 @@ const Shop = ({ articles }) => {
       shop: { activeTabId }
     },
     dispatch
-  ] = useStateValue()
+  ] = useStore()
   return (
     <Tabbed
       tabs={[
