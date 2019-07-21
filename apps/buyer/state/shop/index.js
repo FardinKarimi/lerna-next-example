@@ -1,4 +1,4 @@
-import { actions as networkActions } from '../network/index'
+import { actions as networkActions } from '@company/shared/state/network'
 
 export const initialState = {
   articles: [],

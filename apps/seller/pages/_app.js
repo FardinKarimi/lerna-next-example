@@ -4,32 +4,41 @@ import App, { Container } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import 'isomorphic-fetch'
 
+import NetworkStatus from '@company/components/templates/network_status'
 import { TextProvider } from '@company/components/_contexts/text_provider'
 import { StateProvider } from '@company/components/_contexts/state_provider'
+import { isServer } from '@company/shared';
 
 import Store from '@company/shared/store'
-
-import NetworkStatus from '../templates/network_status'
+import { actions as userActions, LOAD_ME } from '@company/shared/state/user'
+import { CALL_SUCCEEDED, CALL_FAILED } from '@company/shared/state/network'
 
 import theme from '../resources/theme'
 import texts from '../resources/texts'
 import BaseStyles from '../resources/base_styles'
 
 import { initialState, reducer } from '../state'
-import { actions as userActions, LOAD_ME } from '../state/user'
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
-    const store = new Store(initialState, reducer)
-    if (!store.getState().user) {
-      store.dispatch(userActions.loadMe({}))
-      await store.waitFor(state => !(state.network[LOAD_ME] || {}).loading)
-    }
+    const store = new Store(
+      !isServer && typeof window.STORE_STATE !== 'undefined'
+        ? window.STORE_STATE
+        : initialState,
+      reducer
+    )
 
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx, store)
       : await Promise.resolve(null)
-    return { pageProps, initialState: store.getState() }
+
+    const state = store.getState()
+
+    return { pageProps, initialState: state }
+  }
+
+  componentDidMount() {
+    window.STORE_STATE = this.props.initialState
   }
 
   render() {
