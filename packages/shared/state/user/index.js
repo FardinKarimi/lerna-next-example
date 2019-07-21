@@ -14,7 +14,7 @@ export const actions = {
     return dispatch => {
       dispatch(start())
       setTimeout(() => {
-        fetch('http://localhost:3020/api/v1/me')
+        fetch('http://localhost:3000/api/v1/me')
           .then(response => response.json())
           .then(data => {
             dispatch({ type: LOAD_ME, payload: { data } })
