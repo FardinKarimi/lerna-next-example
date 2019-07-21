@@ -7,5 +7,8 @@ export default {
   oops: 'Neee!',
   notImplemented: 'We are still working on this page :\\',
   profile: 'Profile',
-  preferences: 'Preferences'
+  preferences: 'Preferences',
+  fetchMeStart: 'Loading profile',
+  fetchMeSuccess: 'Profile loaded.',
+  fetchMeFailure: 'Failed to load profile'
 }
