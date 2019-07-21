@@ -1,4 +1,2 @@
 import user from '../../../mock_api/user'
-export default function handle(req, res) {
-  res.json(user)
-}
+export default (req, res) => res.json(user)
