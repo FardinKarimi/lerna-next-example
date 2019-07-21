@@ -1,31 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import App, { Container } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import 'isomorphic-fetch'
 
 import { TextProvider } from '@company/components/_contexts/text_provider'
-import { UserProvider } from '@company/components/_contexts/user_provider'
 import { StateProvider } from '@company/components/_contexts/state_provider'
+
+import Store from '@company/shared/store'
+
+import NetworkStatus from '../templates/network_status'
 
 import theme from '../resources/theme'
 import texts from '../resources/texts'
 import BaseStyles from '../resources/base_styles'
 
 import { initialState, reducer } from '../state'
+import { actions as userActions, LOAD_ME } from '../state/user'
+
+const isServer = typeof window === 'undefined'
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
-    const userResponse = await fetch(`http://localhost:3020/api/v1/me`)
-    const user = await userResponse.json()
+    const store = new Store(
+      !isServer && typeof window.STORE_STATE !== 'undefined'
+        ? window.STORE_STATE
+        : initialState,
+      reducer
+    )
+    
+    if (!store.getState().user) {
+      store.dispatch(userActions.loadMe({}))
+      await store.waitFor(state => !(state.network[LOAD_ME] || {}).loading)
+    }
+
     const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
+      ? await Component.getInitialProps(ctx, store)
       : await Promise.resolve(null)
-    return { pageProps, user }
+
+    const state = store.getState()
+
+    if (!isServer) window.STORE_STATE = state
+
+    return { pageProps, initialState: state }
   }
 
   render() {
-    const { Component, pageProps, user } = this.props
+    const { Component, pageProps, initialState } = this.props
 
     return (
       <Container>
@@ -33,13 +54,14 @@ export default class extends App {
           <BaseStyles />
         </Head>
         <TextProvider value={texts}>
-          <UserProvider value={user}>
-            <ThemeProvider theme={theme}>
-              <StateProvider initialState={initialState} reducer={reducer}>
+          <ThemeProvider theme={theme}>
+            <StateProvider initialState={initialState} reducer={reducer}>
+              <>
+                <NetworkStatus />
                 <Component {...pageProps} />
-              </StateProvider>
-            </ThemeProvider>
-          </UserProvider>
+              </>
+            </StateProvider>
+          </ThemeProvider>
         </TextProvider>
       </Container>
     )
