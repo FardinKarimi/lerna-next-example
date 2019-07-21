@@ -5,12 +5,16 @@ export const initialState = null
 export const LOAD_ME = 'LOAD_ME'
 
 export const actions = {
-  loadMe: messages => {
-    const { start, success, failure } = networkActions(LOAD_ME, messages)
+  loadMe: () => {
+    const { start, success, failure } = networkActions(LOAD_ME, {
+      start: 'fetchMeStart',
+      success: 'fetchMeSuccess',
+      failure: 'fetchMeFailure'
+    })
     return dispatch => {
       dispatch(start())
       setTimeout(() => {
-        fetch('http://localhost:3010/api/v1/me')
+        fetch('http://localhost:3020/api/v1/me')
           .then(response => response.json())
           .then(data => {
             dispatch({ type: LOAD_ME, payload: { data } })

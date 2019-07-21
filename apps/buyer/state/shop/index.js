@@ -11,8 +11,12 @@ export const TOGGLE_ARTICLE = 'TOGGLE_ARTICLE'
 export const SWITCH_TAB = 'SWITCH_TAB'
 
 export const actions = {
-  loadArticles: messages => {
-    const { start, success, failure } = networkActions(LOAD_ARTICLES, messages)
+  loadArticles: () => {
+    const { start, success, failure } = networkActions(LOAD_ARTICLES, {
+      start: 'fetchArticlesListStart',
+      success: 'fetchArticlesListSuccess',
+      failure: 'fetchArticlesListFailure'
+    })
     return dispatch => {
       dispatch(start())
       setTimeout(() => {

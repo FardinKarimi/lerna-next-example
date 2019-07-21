@@ -1,4 +1,10 @@
-import applyAsyncMiddleware from '@company/shared/applyAsyncMiddleware'
+import applyAsyncMiddleware from '../applyAsyncMiddleware'
+
+// As nextJs.getInitialProps is a static method, useStore hook cannot be used in it
+// On the other hand, the application state needs to be consistent,
+// regardless of where and when the data was fetched.
+// This class helps with providing a consistent initialState to the StateProvider,
+// regardless of where the data is fetched.
 
 export default class Store {
   observers = []

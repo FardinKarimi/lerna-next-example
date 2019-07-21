@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Toast, { statuses } from '../../atoms/toast'
+import Toast, { statuses } from '../../molecules/toast'
 
 const Container = styled.div`
   font-size: 0.75em;
@@ -18,13 +18,7 @@ const NetworkStatus = ({ items }) => (
       <Toast
         key={key}
         message={item.message}
-        status={
-          item.error
-            ? statuses.ERROR
-            : item.loading
-            ? statuses.INFO
-            : statuses.SUCCESS
-        }
+        status={item.status}
       />
     ))}
   </Container>

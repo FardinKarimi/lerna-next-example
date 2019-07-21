@@ -11,15 +11,15 @@ const Container = styled.div`
   text-align: center;
   box-shadow: 0 0 0.25em ${props => props.theme.shade};
   background: ${props =>
-    props.status === statuses.ERROR
+    props.status === FAILURE
       ? props.theme.error
-      : props.status === statuses.SUCCESS
+      : props.status === SUCCESS
       ? props.theme.success
       : props.theme.shade._300};
   color: ${props =>
-    props.status === statuses.ERROR
+    props.status === FAILURE
       ? props.theme.shade._100
-      : props.status === statuses.SUCCESS
+      : props.status === SUCCESS
       ? props.theme.shade._100
       : props.theme.shade._900};
   opacity: ${props => (props.shown ? 1 : 0)};
@@ -27,11 +27,9 @@ const Container = styled.div`
   transition: all ${props => props.theme.animate._300};
 `
 
-export const statuses = {
-  INFO: 'INFO',
-  SUCCESS: 'SUCCESS',
-  ERROR: 'ERROR'
-}
+const LOADING = 'CALL_STARTED'
+const SUCCESS = 'CALL_SUCCEEDED'
+const FAILURE = 'CALL_FAILED'
 
 const Toast = ({
   status,
@@ -44,15 +42,15 @@ const Toast = ({
   const onMouseOver = () => isShown && setHovered(true)
   const onMouseOut = () => isShown && setHovered(false)
 
-  const [isShown, setShown] = useState(false)
+  const [isShown, setShown] = useState(!delay || delay <= 0)
   const fadeIn = () => {
-    if (!isShown && delay && delay > 0) {
+    if (!isShown) {
       const timeout = setTimeout(() => setShown(true), delay)
       return () => clearTimeout(timeout)
     }
   }
   const fadeOut = () => {
-    if (isShown && !isHovered && fadeTimeout && fadeTimeout > 0) {
+    if (!isHovered && fadeTimeout && fadeTimeout > 0) {
       const timeout = setTimeout(() => setShown(false), fadeTimeout)
       return () => clearTimeout(timeout)
     }
@@ -68,18 +66,13 @@ const Toast = ({
       return () => clearTimeout(timeout)
     }
   }
-
-  useEffect(fadeIn, [status, isHovered])
-  useEffect(fadeOut, [status, isHovered])
+  useEffect(fadeIn, [status])
+  useEffect(fadeOut, [isShown, isHovered])
   useEffect(lazyUpdate, [status, message])
 
   const icon =
     showIcon &&
-    (lazyStatus === statuses.ERROR
-      ? '✘'
-      : lazyStatus === statuses.SUCCESS
-      ? '✔'
-      : '...')
+    (lazyStatus === FAILURE ? '✘' : lazyStatus === SUCCESS ? '✔' : '...')
 
   return (
     <Container
