@@ -3,7 +3,7 @@ import Toast, { statuses } from '../../atoms/toast'
 
 const Container = styled.div`
   font-size: 0.75em;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
