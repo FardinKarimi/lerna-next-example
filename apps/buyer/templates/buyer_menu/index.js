@@ -1,9 +1,9 @@
 import Menu from '@company/components/organisms/menu'
 import useText from '@company/components/_contexts/text_provider'
-import useUser from '@company/components/_contexts/user_provider'
+import useStore from '@company/components/_contexts/state_provider'
 
 const BuyerMenu = () => {
-  const user = useUser()
+  const [{ user }] = useStore()
   const texts = useText()
   return (
     <Menu
