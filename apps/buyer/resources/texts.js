@@ -10,5 +10,11 @@ export default {
   preferences: 'Preferences',
   grocery: 'Grocery',
   kitchen: 'Kitchen Tools',
-  car: 'Car Tools'
+  car: 'Car Tools',
+  fetchArticlesListStart: 'Loading articles',
+  fetchArticlesListSuccess: 'Articles loaded.',
+  fetchArticlesListFailure: 'Failed to load articles',
+  fetchMeStart: 'Loading profile',
+  fetchMeSuccess: 'Profile loaded.',
+  fetchMeFailure: 'Failed to load profile'
 }
